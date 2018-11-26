@@ -188,9 +188,15 @@ class ListFormFiltersConfigPass implements ConfigPassInterface
 
         $callableParams = array();
         if (\is_string($filterConfig['type_options']['choices_static_callback'])) {
-            $callable = array($entityClass, $filterConfig['type_options']['choices_static_callback']);
+            $callable = [$entityClass, $filterConfig['type_options']['choices_static_callback']];
+        } elseif (isset($filterConfig['type_options']['choices_static_callback'][2])) {
+            $callable = [
+                $filterConfig['type_options']['choices_static_callback'][2],
+                $filterConfig['type_options']['choices_static_callback'][0],
+            ];
+            $callableParams = $filterConfig['type_options']['choices_static_callback'][1];
         } else {
-            $callable = array($entityClass, $filterConfig['type_options']['choices_static_callback'][0]);
+            $callable = [$entityClass, $filterConfig['type_options']['choices_static_callback'][0]];
             $callableParams = $filterConfig['type_options']['choices_static_callback'][1];
         }
         unset($filterConfig['type_options']['choices_static_callback']);

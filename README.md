@@ -149,7 +149,7 @@ Let's see the result !
 
 Guesser for list form filters are based on mapped entity property :
 * _boolean_: guessed filter is a choice list (null, Yes, No)
-* _string_: guessed filter is multiple choice list that requires either `choices` (value/label array) or `choices_static_callback` (static callback from entity class returning a value/label array) in `type_options`.
+* _string_: guessed filter is multiple choice list that requires either `choices` (value/label array) or `choices_static_callback` (static callback from entity class returning a value/label array) in `type_options`. You can specify class to call static method as the third parameter in callback array.
 * _*-to-one-relation_: guessed filter is a multiple autocomplete of relation target entity.
 
 Filters form's method is GET and submitted through `form_filter` parameter. It is transmitted to the referer used for post update/delete/create redirection AND for search !
@@ -158,7 +158,7 @@ Filters form's method is GET and submitted through `form_filter` parameter. It i
 
 * EasyAdmin allows filtering list with `dql_filter` configuration entry. But this is not dynamic and must be configured as an apart list in `easy_admin` configuration.*
 
-This extension allows to __dynamically filter lists__ by adding `filters` parameter in the URL parameters. Having a list of books at URL `<url-to-admin>?action=list&entity=Book` with a releaseYear field, you can filter on books releasd in 2016 by requesting `<url-to-admin>?action=list&entity=Book&filters[entity.releaseDate]=2016`. It only matches exact values, but you can chain them. To request books released in 2015 and 2016, you must request `<url-to-admin>?action=list&entity=Book&filters[entity.releaseDate][]=2015&filters[entity.releaseDate][]=2016`.
+This extension allows to __dynamically filter lists__ by adding `filters` parameter in the URL parameters. Having a list of books at URL `<url-to-admin>?action=list&entity=Book` with a releaseYear field, you can filter on books released in 2016 by requesting `<url-to-admin>?action=list&entity=Book&filters[entity.releaseDate]=2016`. It only matches exact values, but you can chain them. To request books released in 2015 and 2016, you must request `<url-to-admin>?action=list&entity=Book&filters[entity.releaseDate][]=2015&filters[entity.releaseDate][]=2016`.
 
 This `filters` parameter is transmitted to the referer used for post update/delete/create redirection AND for search !
 
